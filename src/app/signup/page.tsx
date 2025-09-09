@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { axios } from "axios";
 import { useState } from "react";
@@ -8,13 +8,32 @@ import { useState } from "react";
 
 
 export default function SignupPage() {
+  const router = useRouter();
 
   const [user, setUser] = useState({
     username: "",
     email: "",
     password: ""
   });
-  const onSignup = async () => {}
+  const [buttonDisabled, setButtonDisabled] = useState(false)
+  
+  const onSignup = async () => { 
+    try {
+      
+    } catch (error) {
+      
+    }
+  }
+
+  useEffect(() => {
+    if(user.email.length > 0 && user.password.length > 0 && user.username.length > 0){
+      setButtonDisabled(false);
+    }
+    else{
+      setButtonDisabled(true);
+    }
+    }, [user])
+  
 
 return (
     <div className="flex flex-col justify-center items-center h-screen bg-gray-800">
@@ -43,8 +62,8 @@ return (
         className="p-2 m-2 rounded" 
         onChange={(e) => setUser({...user, password: e.target.value})} />
         <button 
-        className="bg-blue-500 text-white p-2 m-2 rounded" 
-        onClick={onSignup}>Signup</button>
+        className="bg-blue-500 text-white p-2 m-2 rounded text-black" 
+        onClick={onSignup}>{buttonDisabled ? "No signup" : "signup"}</button>
         <Link href="/login" className="text-white">Already have an account? Login</Link>
     </div>
   )
