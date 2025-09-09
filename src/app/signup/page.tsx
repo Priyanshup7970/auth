@@ -10,7 +10,7 @@ import { useState } from "react";
 export default function SignupPage() {
 
   const [user, setUser] = useState({
-    name: "",
+    username: "",
     email: "",
     password: ""
   });
@@ -26,11 +26,25 @@ return (
         type="text" 
         value={user.username}
         placeholder="username" 
+        className="p-2 border border-gray-300 rounded-lg mb-3.5 focus:outline-none focus:border-gray-700"
         onChange={(e) => setUser({...user, username: e.target.value})} />
-        <label htmlFor="username">Email</label>
-        <input type="email" placeholder="Email" className="p-2 m-2 rounded" onChange={(e) => setUser({...user, email: e.target.value})} />
-        <input type="password" placeholder="Password" className="p-2 m-2 rounded" onChange={(e) => setUser({...user, password: e.target.value})} />
-        <button className="bg-blue-500 text-white p-2 m-2 rounded" onClick={onSignup}>Signup</button>
+        <label htmlFor="email">Email</label>
+        <input
+         type="email" 
+         placeholder="Email" 
+         className="p-2 m-2 rounded" 
+         onChange={(e) => setUser({...user, email: e.target.value})} />
+        <label htmlFor="password">password</label>
+        <input 
+        id="password"
+        type="password" 
+        value={user.password}
+        placeholder="Password" 
+        className="p-2 m-2 rounded" 
+        onChange={(e) => setUser({...user, password: e.target.value})} />
+        <button 
+        className="bg-blue-500 text-white p-2 m-2 rounded" 
+        onClick={onSignup}>Signup</button>
         <Link href="/login" className="text-white">Already have an account? Login</Link>
     </div>
   )
