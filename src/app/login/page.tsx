@@ -16,7 +16,7 @@ export default function LoginPage() {
     email: "",
     password: ""
   });
-  const [buttonDisabled,setButtonDisabled] = useState("false");
+  const [buttonDisabled, setButtonDisabled] = useState("false");
   const [loading, setLoading] = useState(false);
   
   
@@ -45,7 +45,7 @@ export default function LoginPage() {
 
 return (
     <div className="flex flex-col justify-center items-center h-screen bg-gray-800">
-        <h1 className="text-center text-white text-2xl" >{loading ? "processing" : "Login"}</h1>
+        <h1 className="text-center text-white text-2xl" >{loading ? "Processing" : "Login"}</h1>
         <hr />
   
         <label htmlFor="email">Email</label>
@@ -54,7 +54,7 @@ return (
          placeholder="Email" 
          className="p-2 m-2 rounded" 
          onChange={(e) => setUser({...user, email: e.target.value})} />
-        <label htmlFor="password">password</label>
+        <label htmlFor="password">Password</label>
         <input 
         id="password"
         type="password" 
@@ -65,7 +65,7 @@ return (
         <button 
         className="bg-blue-500 text-white p-2 m-2 rounded" 
         onClick={onLogin}>Login</button>
-        <Link href="/signup" className="text-white">Dont have an account? Sign Up</Link>
+        <Link href="/signup" className="text-white">Don't have an account? Sign Up</Link>
     </div>
   )
 }
