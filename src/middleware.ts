@@ -5,7 +5,7 @@ export function middleware(request: NextRequest) {
     const path = request.nextUrl.pathname;
     // another way to write it for long list of paths but less efficient for small list
     //const isPublicPath = ['/login', '/signup'].includes(path);
-    const isPublicPath = path === '/login' || path === '/signup';
+    const isPublicPath = path === '/login' || path === '/signup' || path === '/verifyemail';
     const token = request.cookies.get('token')?.value;
     // if no token and not public path, redirect to login first method but less efficient
     // if (!token && !isPublicPath) {
@@ -29,5 +29,6 @@ export const config = {
     '/profile',
     '/login',
     '/signup',
+    '/verifyemail'
 ]
 }

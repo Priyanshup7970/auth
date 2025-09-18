@@ -1,7 +1,6 @@
 "use client"
 
 import axios from "axios"
-import { set } from "mongoose";
 import Link from "next/link"
 import { useEffect, useState } from "react"
 
@@ -22,4 +21,33 @@ export default function VerifyEmailPage(){
             console.log(error.response.data);
         }
     }
+    useEffect(()=>{
+       const urlToken = window.location.search.split("=")[1];
+       setToken(urlToken || "");
+
+    }, []);
+    useEffect(()=>{
+        if(token.length > 0){
+            verifyUserEmail();
+        }
+    }, [token]);
+    return(
+        <div className="flex flex-col justify-center items-center min-h-screen py-2">
+            <h1 className="text-4xl">Verify Email</h1>
+            <h2 className="p-2 bg-orange-500 text-black">{token ? `${token}` :"no token"}</h2>
+            {verified &&(
+             <div>
+                <h2 className="text-2xl text-green-500">Email Verified Successfully</h2>
+                <Link href="/login">
+                Login
+                </Link>
+            </div>
+        )}
+        {error &&(
+            <div>
+                <h2 className="text-2xl text-red-500">Error Verifying Email</h2>    
+            </div>
+        )}
+        </div>
+    )
 }

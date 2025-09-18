@@ -31,12 +31,14 @@ export const sendEmail = async ({email, emailType, userId }: any) => {
         const mailOptions = {
             from: process.env.EMAIL_FROM,
             to: email,
-            subject: emailType === "VERIFY" ? "Verify your email" : "Reset your password",
-            html: `<p>Click <a href="${process.env.FRONTEND_URL}/${
-                emailType === "VERIFY" ? "verifyemail" : "resetpassword"
-            }?token=${hashedToken}">here</a> to ${
-                emailType === "VERIFY" ? "verify your email" : "reset your password"
-            }. This link will expire in 1 hour.</p>`,
+            subject: emailType === "VERIFY" ? "Verify your email" : "Reset Your Password",
+            html: `<p>Click <a href="${process.env.domain}/
+            verifyemail?token=${hashedToken}">here</a> to ${
+                emailType === "VERIFY" ? "verify your email" : "Reset Your Password"
+            }
+                or copy and paste the link below in your browser. 
+                <br>${process.env.domain}/verifyemail?token=${hashedToken}
+                This link will expire in 1 hour.</p>`,
         };
         const mailresponse = await transport.sendMail(mailOptions);
         return mailresponse;
